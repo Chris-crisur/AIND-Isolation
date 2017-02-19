@@ -24,6 +24,7 @@ import random
 import warnings
 
 from collections import namedtuple
+from multiprocessing.pool import Pool
 
 from isolation import Board
 from sample_players import RandomPlayer
@@ -120,9 +121,16 @@ def play_round(agents, num_matches):
         print("  Match {}: {!s:^11} vs {!s:^11}".format(idx + 1, *names), end=' ')
 
         # Each player takes a turn going first
+        pool = Pool()
         for p1, p2 in itertools.permutations((agent_1.player, agent_2.player)):
+            match_results = []
             for _ in range(num_matches):
                 score_1, score_2 = play_match(p1, p2)
+                match_result = pool.apply_async(play_match, [p1, p2])
+                match_results.append(match_result)
+
+            for match_result in match_results:
+                score_1, score_2 = match_result.get()
                 counts[p1] += score_1
                 counts[p2] += score_2
                 total += score_1 + score_2

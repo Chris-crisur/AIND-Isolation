@@ -16,6 +16,15 @@ from copy import copy
 
 TIME_LIMIT_MILLIS = 200
 
+class TermColors:
+    CYAN = '\033[95m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    WARNING = '\033[93m'
+    RED = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class Board(object):
     """
@@ -288,11 +297,11 @@ class Board(object):
                 if not self.__board_state__[i][j]:
                     out += ' '
                 elif p1_loc and i == p1_loc[0] and j == p1_loc[1]:
-                    out += '1'
+                    out += TermColors.BLUE + '1' + TermColors.ENDC
                 elif p2_loc and i == p2_loc[0] and j == p2_loc[1]:
-                    out += '2'
+                    out += TermColors.RED + '2' + TermColors.ENDC
                 else:
-                    out += '-'
+                    out += ( TermColors.BLUE if self.__board_state__[i][j] == 1 else TermColors.RED ) + "-" + TermColors.ENDC
 
                 out += ' | '
             out += '\n\r'
