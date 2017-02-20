@@ -8,8 +8,6 @@ relative strength using tournament.py and include the results in your report.
 """
 import random
 
-from numpy import Inf
-
 
 class Timeout(Exception):
     """Subclass base exception for code clarity."""
@@ -137,13 +135,26 @@ class CustomPlayer:
         # move from the game board (i.e., an opening book), or returning
         # immediately if there are no legal moves
         move = (-1, -1)
+        if self.method == 'minimax':
+            method = self.minimax
+        elif self.method == 'alphabeta':
+            method = self.alphabeta
+        else:
+            raise Exception("method not implemented")
+
         try:
             # The search method call (alpha beta or minimax) should happen in
             # here in order to avoid timeout. The try/except block will
             # automatically catch the exception raised by the search method
             # when the timer gets close to expiring
-            score, move = self.minimax(game, self.search_depth)
-
+            if self.search_depth > 0:
+                for depth in range(1, self.search_depth + 1):
+                    score, move = method(game, depth)
+            else:
+                depth = 1
+                while True:
+                    score, move = method(game, depth)
+                    depth += 1
         except Timeout:
             # Handle any actions required at timeout, if necessary
             pass
@@ -200,7 +211,7 @@ class CustomPlayer:
         for legal_move in game.get_legal_moves():
             new_game = game.forecast_move(legal_move)
             if depth > 1:
-                score, next_move = self.minimax(new_game, depth-1, not maximizing_player, player)
+                score, next_move = self.minimax(new_game, depth - 1, not maximizing_player, player)
             else:
                 score = self.score(new_game, player)
 
@@ -238,6 +249,9 @@ class CustomPlayer:
             Flag indicating whether the current search depth corresponds to a
             maximizing layer (True) or a minimizing layer (False)
 
+        player : object
+            Player perspective for score calculation
+
         Returns
         -------
         float
@@ -259,25 +273,30 @@ class CustomPlayer:
             player = game.active_player
 
         if maximizing_player:
-            best_score = -Inf
+            best_score = float("-inf")
         else:
-            best_score = Inf
+            best_score = float("inf")
 
         best_move = (-1, -1)
         for legal_move in game.get_legal_moves():
             new_game = game.forecast_move(legal_move)
             if depth > 1:
-                score, next_move = self.alphabeta(new_game, depth-1, not maximizing_player, player)
+                score, next_move = self.alphabeta(new_game, depth - 1, alpha, beta, not maximizing_player, player)
             else:
                 # terminating case
                 score = self.score(new_game, player)
 
             if maximizing_player:
                 best_score = max(best_score, score)
+                alpha = max(alpha, best_score)
             else:
                 best_score = min(best_score, score)
+                beta = min(beta, best_score)
+
             if best_score == score:
                 # best_score updated, so update best_move accordingly
                 best_move = legal_move
+            if (not maximizing_player and best_score <= alpha) or (maximizing_player and best_score >= beta):
+                break
 
         return best_score, best_move
