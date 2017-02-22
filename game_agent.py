@@ -14,15 +14,81 @@ class Timeout(Exception):
     pass
 
 
+def base_heuristic(game, player):
+    return game.utility(player)
+
+
+def max_player_path(game, player, max_path=0):
+    moves = game.get_legal_moves()
+    if len(moves) == 0:
+        return max_path
+    for move in moves:
+        new_game = game.forecast_move(move)
+        mp = max_player_path(new_game, player, max_path + 1)
+        max_path = max(max_path, mp)
+    return max_path
+
+
+def heuristic5(game, player):
+    """
+
+    """
+    return max_player_path(game, player) - max_player_path(game, game.get_opponent(player))
+
+
+def heuristic4(game, player):
+    """
+    The number of open spaces around the location of the player
+    """
+    location_player = game.get_player_location(player)
+    blank_spaces = game.get_blank_spaces()
+    open_space_player = 0.0
+    for (m, n) in [(1, 0), (0, 1), (-1, 0), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)]:
+        if (location_player[0] + m, location_player[1] + n) in blank_spaces:
+            open_space_player += 1
+    return open_space_player
+
+
+def heuristic3(game, player):
+    """
+    The number of open spaces around the location of the player's future move
+    """
+    best_num_open_spaces = 0.0
+    for legal_move in game.get_legal_moves():
+        new_game = game.forecast_move(legal_move)
+        location_player = new_game.get_player_location(player)
+        blank_spaces = new_game.get_blank_spaces()
+        open_space_player = 0.0
+        for (m, n) in [(1, 0), (0, 1), (-1, 0), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)]:
+            if (location_player[0] + m, location_player[1] + n) in blank_spaces:
+                open_space_player += 1
+        best_num_open_spaces = max(best_num_open_spaces, open_space_player)
+    return best_num_open_spaces
+
+
+def heuristic2(game, player):
+    """
+    Difference between the number of open spaces around the location of the players
+    """
+    location_player = game.get_player_location(player)
+    location_opp = game.get_player_location(game.get_opponent(player))
+    blank_spaces = game.get_blank_spaces()
+    open_space_player = 0.0
+    open_space_opp = 0.0
+    for (m, n) in [(1, 0), (0, 1), (-1, 0), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)]:
+        if (location_player[0] + m, location_player[1] + n) in blank_spaces:
+            open_space_player += 1
+        if (location_opp[0] + m, location_opp[1] + n) in blank_spaces:
+            open_space_opp += 1
+    return open_space_player - open_space_opp
+
+
 def heuristic1(game, player):
     """
     Number my moves vs opposition moves
-    :param game:
-    :param player:
-    :return:
     """
-    num_moves_player = len(game.get_legal_moves(game.active_player))
-    num_moves_opposition = len(game.get_legal_moves(game.inactive_player))
+    num_moves_player = len(game.get_legal_moves(player))
+    num_moves_opposition = len(game.get_legal_moves(game.get_opponent(player)))
     return float(num_moves_player - num_moves_opposition)
 
 
@@ -48,8 +114,20 @@ def custom_score(game, player):
     float
         The heuristic value of the current game state to the specified player.
     """
+    # if len(game.get_blank_spaces())>=total_board_spaces/2:
+    #     return heuristic1(game, player)
+    # else:
+    #     return heuristic2(game, player)
+    # weight number of moves more highly at the beginning of the game, then amount of open space
+    # and finally, maximum path length (winner will have max length)
+    # each measure for player is compared to opponent's measure
+    prop = len(game.get_blank_spaces()) / total_board_spaces
+    if prop<0.2:
+        return heuristic5(game,player)
+    return prop * heuristic1(game, player) + heuristic2(game, player)
 
-    return heuristic1(game, player)
+
+total_board_spaces = 0.1
 
 
 class CustomPlayer:
@@ -128,12 +206,7 @@ class CustomPlayer:
         """
 
         self.time_left = time_left
-
-        # TODO: finish this function!
-
-        # Perform any required initializations, including selecting an initial
-        # move from the game board (i.e., an opening book), or returning
-        # immediately if there are no legal moves
+        total_board_spaces = len(game.get_blank_spaces())
         move = (-1, -1)
         if self.method == 'minimax':
             method = self.minimax
@@ -142,19 +215,25 @@ class CustomPlayer:
         else:
             raise Exception("method not implemented")
 
+        # Perform any required initializations, including selecting an initial
+        # move from the game board (i.e., an opening book), or returning
+        # immediately if there are no legal moves
+
         try:
             # The search method call (alpha beta or minimax) should happen in
             # here in order to avoid timeout. The try/except block will
             # automatically catch the exception raised by the search method
             # when the timer gets close to expiring
-            if self.search_depth > 0:
-                for depth in range(1, self.search_depth + 1):
-                    score, move = method(game, depth)
-            else:
+            if self.iterative is True:
                 depth = 1
                 while True:
-                    score, move = method(game, depth)
+                    _, move = method(game, depth)
                     depth += 1
+                    if time_left() <= 10:
+                        return move
+            else:
+                score, move = method(game, self.search_depth)
+
         except Timeout:
             # Handle any actions required at timeout, if necessary
             pass
