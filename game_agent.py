@@ -122,7 +122,7 @@ def custom_score(game, player):
     # and finally, maximum path length (winner will have max length)
     # each measure for player is compared to opponent's measure
     prop = len(game.get_blank_spaces()) / total_board_spaces
-    if prop<0.2:
+    if prop<0.15:
         return heuristic5(game,player)
     return prop * heuristic1(game, player) + heuristic2(game, player)
 
@@ -204,7 +204,7 @@ class CustomPlayer:
             Board coordinates corresponding to a legal move; may return
             (-1, -1) if there are no available legal moves.
         """
-
+        global total_board_spaces
         self.time_left = time_left
         total_board_spaces = len(game.get_blank_spaces())
         move = (-1, -1)
@@ -229,14 +229,14 @@ class CustomPlayer:
                 while True:
                     _, move = method(game, depth)
                     depth += 1
-                    if time_left() <= 10:
+                    if time_left() <= self.TIMER_THRESHOLD:
                         return move
             else:
                 score, move = method(game, self.search_depth)
 
         except Timeout:
             # Handle any actions required at timeout, if necessary
-            pass
+            return move
 
         # Return the best move from the last completed search iteration
         return move
