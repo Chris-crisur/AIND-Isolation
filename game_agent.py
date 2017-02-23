@@ -92,6 +92,17 @@ def heuristic1(game, player):
     return float(num_moves_player - num_moves_opposition)
 
 
+def heuristic_main(game, player):
+    """
+    weight number of moves more highly at the beginning of the game, then amount of open space
+    and finally, maximum path length (winner will have max length)
+    each measure for player is compared to opponent's measure
+    """
+    prop = len(game.get_blank_spaces()) / total_board_spaces
+    if prop<0.2:
+        return heuristic5(game,player)
+    return prop * heuristic1(game, player) + heuristic2(game, player)
+
 def custom_score(game, player):
     """Calculate the heuristic value of a game state from the point of view
     of the given player.
@@ -121,10 +132,7 @@ def custom_score(game, player):
     # weight number of moves more highly at the beginning of the game, then amount of open space
     # and finally, maximum path length (winner will have max length)
     # each measure for player is compared to opponent's measure
-    prop = len(game.get_blank_spaces()) / total_board_spaces
-    if prop<0.15:
-        return heuristic5(game,player)
-    return prop * heuristic1(game, player) + heuristic2(game, player)
+    return base_heuristic(game, player)
 
 
 total_board_spaces = 0.1

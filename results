@@ -1,0 +1,110 @@
+Heuristic:
+heuristic_main
+
+*************************
+ Evaluating: ID_Improved 
+*************************
+
+Playing Matches:
+----------
+  Match 1: ID_Improved vs   Random    	Result: 14 to 6
+  Match 2: ID_Improved vs   MM_Null   	Result: 13 to 7
+  Match 3: ID_Improved vs   MM_Open   	Result: 11 to 9
+  Match 4: ID_Improved vs MM_Improved 	Result: 7 to 13
+  Match 5: ID_Improved vs   AB_Null   	Result: 14 to 6
+  Match 6: ID_Improved vs   AB_Open   	Result: 13 to 7
+  Match 7: ID_Improved vs AB_Improved 	Result: 12 to 8
+
+
+Results:
+----------
+ID_Improved         60.00%
+
+*************************
+   Evaluating: Student   
+*************************
+
+Playing Matches:
+----------
+  Match 1:   Student   vs   Random    	Result: 20 to 0
+  Match 2:   Student   vs   MM_Null   	Result: 20 to 0
+  Match 3:   Student   vs   MM_Open   	Result: 10 to 10
+  Match 4:   Student   vs MM_Improved 	Result: 12 to 8
+  Match 5:   Student   vs   AB_Null   	Result: 17 to 3
+  Match 6:   Student   vs   AB_Open   /home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 11 to 9
+  Match 7:   Student   vs AB_Improved 	Result: 16 to 4
+
+
+Results:
+----------
+Student             75.71%
+
+
+
+
+Heuristic1
+*************************
+ Evaluating: ID_Improved 
+*************************
+
+Playing Matches:
+----------
+  Match 1: ID_Improved vs   Random    /home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+/home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 14 to 6
+  Match 2: ID_Improved vs   MM_Null   /home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 12 to 8
+  Match 3: ID_Improved vs   MM_Open   /home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+/home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 5 to 15
+  Match 4: ID_Improved vs MM_Improved /home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 8 to 12
+  Match 5: ID_Improved vs   AB_Null   	Result: 11 to 9
+  Match 6: ID_Improved vs   AB_Open   	Result: 12 to 8
+  Match 7: ID_Improved vs AB_Improved /home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+/home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+/home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+	Result: 12 to 8
+  warnings.warn(TIMEOUT_WARNING)
+
+
+Results:
+----------
+ID_Improved         52.86%
+
+*************************
+   Evaluating: Student   
+*************************
+
+Playing Matches:
+----------
+  Match 1:   Student   vs   Random    	Result: 19 to 1
+  Match 2:   Student   vs   MM_Null   	Result: 13 to 7
+  Match 3:   Student   vs   MM_Open   /home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 8 to 12
+  Match 4:   Student   vs MM_Improved /home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+/home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 10 to 10
+  Match 5:   Student   vs   AB_Null   /home/cbc/dev/aind/AIND-Isolation/tournament.py:101: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 16 to 4
+  Match 6:   Student   vs   AB_Open   	Result: 12 to 8
+  Match 7:   Student   vs AB_Improved 	Result: 12 to 8
+
+
+Results:
+----------
+Student             64.29%
