@@ -148,7 +148,7 @@ def heuristic_mainalt(game, player):
     and finally, maximum path length (winner will have max length)
     """
     prop = len(game.get_blank_spaces()) / total_board_spaces
-    if prop < 0.2:
+    if prop < 0.4:
         return heuristic6(game, player)
     return prop * heuristic1(game, player) + heuristic2(game, player)
 
