@@ -108,3 +108,292 @@ Playing Matches:
 Results:
 ----------
 Student             64.29%
+
+
+*************************
+ Evaluating: ID_Improved 
+*************************
+
+Playing Matches:
+----------
+  Match 1: ID_Improved vs   Random      Result: 18 to 2
+  Match 2: ID_Improved vs   MM_Null     Result: 13 to 7
+  Match 3: ID_Improved vs   MM_Open     Result: 11 to 9
+  Match 4: ID_Improved vs MM_Improved   Result: 11 to 9
+  Match 5: ID_Improved vs   AB_Null     Result: 11 to 9
+C:/Projects/aind/AIND-Isolation/tournament.py:102: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+  Match 6: ID_Improved vs   AB_Open     Result: 14 to 6
+  Match 7: ID_Improved vs AB_Improved   Result: 16 to 4
+
+
+Results:
+----------
+ID_Improved         67.14%
+
+*************************
+Evaluating: heuristic_mainalt_staggered
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic_mainalt_staggered vs   Random      Result: 19 to 1
+  Match 2: heuristic_mainalt_staggered vs   MM_Null     Result: 13 to 7
+  Match 3: heuristic_mainalt_staggered vs   MM_Open     Result: 7 to 13
+  Match 4: heuristic_mainalt_staggered vs MM_Improved   Result: 10 to 10
+  Match 5: heuristic_mainalt_staggered vs   AB_Null     Result: 10 to 10
+  Match 6: heuristic_mainalt_staggered vs   AB_Open     Result: 13 to 7
+  Match 7: heuristic_mainalt_staggered vs AB_Improved   Result: 16 to 4
+
+
+Results:
+----------
+heuristic_mainalt_staggered     62.86%
+
+*************************
+Evaluating: heuristic_mainalt
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic_mainalt vs   Random      Result: 18 to 2
+  Match 2: heuristic_mainalt vs   MM_Null     Result: 19 to 1
+  Match 3: heuristic_mainalt vs   MM_Open     Result: 14 to 6
+  Match 4: heuristic_mainalt vs MM_Improved   Result: 10 to 10
+  Match 5: heuristic_mainalt vs   AB_Null     Result: 15 to 5
+  Match 6: heuristic_mainalt vs   AB_Open     Result: 15 to 5
+  Match 7: heuristic_mainalt vs AB_Improved   Result: 19 to 1
+
+
+Results:
+----------
+heuristic_mainalt     78.57%
+
+*************************
+Evaluating: heuristic_main_staggered
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic_main_staggered vs   Random     Result: 16 to 4
+  Match 2: heuristic_main_staggered vs   MM_Null    Result: 11 to 9
+  Match 3: heuristic_main_staggered vs   MM_Open    Result: 9 to 11
+  Match 4: heuristic_main_staggered vs MM_Improved  Result: 5 to 15
+  Match 5: heuristic_main_staggered vs   AB_Null    Result: 14 to 6
+  Match 6: heuristic_main_staggered vs   AB_Open    Result: 12 to 8
+  Match 7: heuristic_main_staggered vs AB_Improved  Result: 14 to 6
+
+
+Results:
+----------
+heuristic_main_staggered     57.86%
+
+*************************
+Evaluating: heuristic_main
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic_main vs   Random     Result: 19 to 1
+  Match 2: heuristic_main vs   MM_Null    Result: 13 to 7
+  Match 3: heuristic_main vs   MM_Open    Result: 10 to 10
+  Match 4: heuristic_main vs MM_Improved  Result: 10 to 10
+  Match 5: heuristic_main vs   AB_Null    Result: 17 to 3
+  Match 6: heuristic_main vs   AB_Open    Result: 15 to 5
+  Match 7: heuristic_main vs AB_Improved  Result: 19 to 1
+
+
+Results:
+----------
+heuristic_main      73.57%
+
+*************************
+ Evaluating: heuristic1  
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic1  vs   Random      Result: 15 to 5
+  Match 2: heuristic1  vs   MM_Null     Result: 14 to 6
+  Match 3: heuristic1  vs   MM_Open     Result: 9 to 11
+  Match 4: heuristic1  vs MM_Improved   Result: 6 to 14
+  Match 5: heuristic1  vs   AB_Null     Result: 10 to 10
+  Match 6: heuristic1  vs   AB_Open     Result: 13 to 7
+  Match 7: heuristic1  vs AB_Improved   Result: 14 to 6
+
+
+Results:
+----------
+heuristic1          57.86%
+
+*************************
+ Evaluating: heuristic2  
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic2  vs   Random      Result: 15 to 5
+  Match 2: heuristic2  vs   MM_Null     Result: 16 to 4
+  Match 3: heuristic2  vs   MM_Open     Result: 12 to 8
+  Match 4: heuristic2  vs MM_Improved   Result: 13 to 7
+  Match 5: heuristic2  vs   AB_Null     Result: 11 to 9
+  Match 6: heuristic2  vs   AB_Open     Result: 16 to 4
+  Match 7: heuristic2  vs AB_Improved   Result: 14 to 6
+
+
+Results:
+----------
+heuristic2          69.29%
+
+*************************
+ Evaluating: heuristic3  
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic3  vs   Random      Result: 14 to 6
+  Match 2: heuristic3  vs   MM_Null     Result: 11 to 9
+  Match 3: heuristic3  vs   MM_Open     Result: 8 to 12
+  Match 4: heuristic3  vs MM_Improved   Result: 10 to 10
+  Match 5: heuristic3  vs   AB_Null     Result: 8 to 12
+  Match 6: heuristic3  vs   AB_Open     Result: 15 to 5
+  Match 7: heuristic3  vs AB_Improved   Result: 15 to 5
+
+
+Results:
+----------
+heuristic3          57.86%
+
+*************************
+ Evaluating: heuristic4  
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic4  vs   Random      Result: 19 to 1
+  Match 2: heuristic4  vs   MM_Null     Result: 14 to 6
+  Match 3: heuristic4  vs   MM_Open     Result: 9 to 11
+  Match 4: heuristic4  vs MM_Improved   Result: 12 to 8
+  Match 5: heuristic4  vs   AB_Null     Result: 13 to 7
+  Match 6: heuristic4  vs   AB_Open     Result: 12 to 8
+  Match 7: heuristic4  vs AB_Improved   Result: 18 to 2
+
+
+Results:
+----------
+heuristic4          69.29%
+
+
+
+C:\Users\Chris\Anaconda2\envs\py3\python.exe C:/Projects/aind/AIND-Isolation/tournament.py
+
+This script evaluates the performance of the custom heuristic function by
+comparing the strength of an agent using iterative deepening (ID) search with
+alpha-beta pruning against the strength rating of agents using other heuristic
+functions.  The `ID_Improved` agent provides a baseline by measuring the
+performance of a basic agent using Iterative Deepening and the "improved"
+heuristic (from lecture) on your hardware.  The `Student` agent then measures
+the performance of Iterative Deepening and the custom heuristic against the
+same opponents.
+
+
+*************************
+ Evaluating: ID_Improved 
+*************************
+
+Playing Matches:
+----------
+C:/Projects/aind/AIND-Isolation/tournament.py:102: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+  Match 1: ID_Improved vs   Random      Result: 6 to 2
+  Match 2: ID_Improved vs   MM_Null     Result: 5 to 3
+  Match 3: ID_Improved vs   MM_Open     Result: 4 to 4
+  Match 4: ID_Improved vs MM_Improved   Result: 3 to 5
+  Match 5: ID_Improved vs   AB_Null     Result: 6 to 2
+  Match 6: ID_Improved vs   AB_Open     Result: 4 to 4
+  Match 7: ID_Improved vs AB_Improved   Result: 7 to 1
+
+
+Results:
+----------
+ID_Improved         62.50%
+
+*************************
+Evaluating: heuristic_mainalt
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic_mainalt vs   Random      Result: 7 to 1
+  Match 2: heuristic_mainalt vs   MM_Null     Result: 8 to 0
+  Match 3: heuristic_mainalt vs   MM_Open     Result: 3 to 5
+  Match 4: heuristic_mainalt vs MM_Improved   Result: 3 to 5
+  Match 5: heuristic_mainalt vs   AB_Null     Result: 6 to 2
+  Match 6: heuristic_mainalt vs   AB_Open     Result: 8 to 0
+  Match 7: heuristic_mainalt vs AB_Improved   Result: 7 to 1
+
+
+Results:
+----------
+heuristic_mainalt     75.00%
+
+*************************
+Evaluating: heuristic_main
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic_main vs   Random     Result: 7 to 1
+  Match 2: heuristic_main vs   MM_Null    Result: 7 to 1
+  Match 3: heuristic_main vs   MM_Open    Result: 5 to 3
+  Match 4: heuristic_main vs MM_Improved  Result: 6 to 2
+  Match 5: heuristic_main vs   AB_Null    Result: 6 to 2
+  Match 6: heuristic_main vs   AB_Open    Result: 6 to 2
+  Match 7: heuristic_main vs AB_Improved  Result: 6 to 2
+
+
+Results:
+----------
+heuristic_main      76.79%
+
+*************************
+Evaluating: heuristic_main_alt_less
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic_main_alt_less vs   Random      Result: 7 to 1
+  Match 2: heuristic_main_alt_less vs   MM_Null     Result: 5 to 3
+  Match 3: heuristic_main_alt_less vs   MM_Open     Result: 3 to 5
+  Match 4: heuristic_main_alt_less vs MM_Improved   Result: 7 to 1
+  Match 5: heuristic_main_alt_less vs   AB_Null     Result: 7 to 1
+  Match 6: heuristic_main_alt_less vs   AB_Open     Result: 5 to 3
+  Match 7: heuristic_main_alt_less vs AB_Improved   Result: 8 to 0
+
+
+Results:
+----------
+heuristic_main_alt_less     75.00%
+
+*************************
+Evaluating: heuristic_mainalt_prop
+*************************
+
+Playing Matches:
+----------
+  Match 1: heuristic_mainalt_prop vs   Random     Result: 7 to 1
+  Match 2: heuristic_mainalt_prop vs   MM_Null    Result: 6 to 2
+  Match 3: heuristic_mainalt_prop vs   MM_Open    Result: 3 to 5
+  Match 4: heuristic_mainalt_prop vs MM_Improved  Result: 2 to 6
+  Match 5: heuristic_mainalt_prop vs   AB_Null    Result: 6 to 2
+  Match 6: heuristic_mainalt_prop vs   AB_Open    Result: 7 to 1
+  Match 7: heuristic_mainalt_prop vs AB_Improved  Result: 6 to 2
+
+
+Results:
+----------
+heuristic_mainalt_prop     66.07%
+
+Process finished with exit code 0
+
+

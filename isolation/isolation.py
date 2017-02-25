@@ -278,7 +278,7 @@ class Board(object):
         """DEPRECATED - use Board.to_string()"""
         return self.to_string()
 
-    def to_string(self):
+    def to_string(self,future_moves=[],actual_move=None):
         """Generate a string representation of the current game state, marking
         the location of each player and indicating which cells have been
         blocked, and which remain open.
@@ -293,8 +293,11 @@ class Board(object):
             out += ' | '
 
             for j in range(self.width):
-
-                if not self.__board_state__[i][j]:
+                if (i, j) == actual_move:
+                    out += TermColors.GREEN + '!' + TermColors.ENDC
+                elif (i, j) in future_moves:
+                    out += TermColors.GREEN + '?' + TermColors.ENDC
+                elif not self.__board_state__[i][j]:
                     out += ' '
                 elif p1_loc and i == p1_loc[0] and j == p1_loc[1]:
                     out += TermColors.BLUE + '1' + TermColors.ENDC
@@ -341,7 +344,8 @@ class Board(object):
             curr_move = self.active_player.get_move(game_copy, legal_player_moves, time_left)
             move_end = time_left()
 
-            #print(move_end)
+            #print(len(game_copy.get_blank_spaces()))
+            #print(game_copy.to_string(legal_player_moves,curr_move))
 
             if curr_move is None:
                 curr_move = Board.NOT_MOVED

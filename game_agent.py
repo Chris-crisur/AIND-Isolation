@@ -8,22 +8,40 @@ relative strength using tournament.py and include the results in your report.
 """
 import random
 
+from sample_players import improved_score
+
 
 class Timeout(Exception):
     """Subclass base exception for code clarity."""
     pass
 
 
-def base_heuristic(game, player):
-    return game.utility(player)
+def heuristic6(game, player):
+    return max_player_path(game, player)
 
 
-def max_player_path(game, player, max_path=0):
-    moves = game.get_legal_moves()
+def max_player_path(game, player, max_path=0.):
+    """
+    Near end game it is important to have depth-first over breadth-first search to determine winner
+    """
+    moves = game.get_legal_moves()  # gets active players moves
+    if game.is_winner(player):
+        return max_path
+    elif game.is_loser(player):
+        return 0
+    for move in moves:
+        new_game = game.forecast_move(move)  # plays move into copy of the game (and changes active player)
+        mp = max_player_path(new_game, player, max_path + 1)
+        max_path = max(max_path, mp)
+    return max_path
+
+
+def max_player_path_alt(game, player, max_path=0.):
+    moves = game.get_legal_moves()  # gets active players moves
     if len(moves) == 0:
         return max_path
     for move in moves:
-        new_game = game.forecast_move(move)
+        new_game = game.forecast_move(move)  # plays move into copy of the game (and changes active player)
         mp = max_player_path(new_game, player, max_path + 1)
         max_path = max(max_path, mp)
     return max_path
@@ -31,9 +49,9 @@ def max_player_path(game, player, max_path=0):
 
 def heuristic5(game, player):
     """
-
+    Returns the difference between the maximum depth a player can go for their moves
     """
-    return max_player_path(game, player) - max_player_path(game, game.get_opponent(player))
+    return max_player_path_alt(game, player) - max_player_path_alt(game, game.get_opponent(player))
 
 
 def heuristic4(game, player):
@@ -86,6 +104,8 @@ def heuristic2(game, player):
 def heuristic1(game, player):
     """
     Number my moves vs opposition moves
+    similar to improved score
+    (no player win/lose values as this heuristic is used in the preferred heuristics where this is not necessary)
     """
     num_moves_player = len(game.get_legal_moves(player))
     num_moves_opposition = len(game.get_legal_moves(game.get_opponent(player)))
@@ -99,9 +119,103 @@ def heuristic_main(game, player):
     each measure for player is compared to opponent's measure
     """
     prop = len(game.get_blank_spaces()) / total_board_spaces
-    if prop<0.2:
-        return heuristic5(game,player)
+    if prop < 0.2:
+        return heuristic5(game, player)
     return prop * heuristic1(game, player) + heuristic2(game, player)
+
+
+def heuristic_main_staggered(game, player):
+    """
+    use number of moves at the beginning of the game, then amount of open space
+    and finally, maximum path length (winner will have max length)
+    each measure for player is compared to opponent's measure
+    """
+    game_stage = len(game.get_blank_spaces()) / total_board_spaces
+    if game_stage > 0.7:
+        # early game
+        return heuristic1(game, player)
+    elif game_stage < 0.2:
+        # late game
+        return heuristic5(game, player)
+    else:
+        # middle game
+        return heuristic2(game, player)
+
+
+def heuristic_mainalt(game, player):
+    """
+    weight number of moves more highly at the beginning of the game, then amount of open space
+    and finally, maximum path length (winner will have max length)
+    """
+    prop = len(game.get_blank_spaces()) / total_board_spaces
+    if prop < 0.2:
+        return heuristic6(game, player)
+    return prop * heuristic1(game, player) + heuristic2(game, player)
+
+def heuristic_mainalt_prop(game, player):
+    """
+    weight number of moves more highly at the beginning of the game, then amount of open space
+    and finally, maximum path length (winner will have max length)
+    """
+    prop = len(game.get_blank_spaces()) / total_board_spaces
+    if prop < 0.2:
+        return heuristic6(game, player)
+    return prop * heuristic1(game, player) + (1-prop)*heuristic2(game, player)
+
+def heuristic_main_alt_01(game, player):
+    """
+    weight number of moves more highly at the beginning of the game, then amount of open space
+    and finally, maximum path length (winner will have max length)
+    """
+    prop = len(game.get_blank_spaces()) / total_board_spaces
+    if prop < 0.1:
+        return heuristic6(game, player)
+    return prop * heuristic1(game, player) + heuristic2(game, player)
+
+def heuristic_main_alt_03(game, player):
+    """
+    weight number of moves more highly at the beginning of the game, then amount of open space
+    and finally, maximum path length (winner will have max length)
+    """
+    prop = len(game.get_blank_spaces()) / total_board_spaces
+    if prop < 0.3:
+        return heuristic6(game, player)
+    return prop * heuristic1(game, player) + heuristic2(game, player)
+
+
+def heuristic_main_alt_less(game, player):
+    """
+    weight number of moves more highly at the beginning of the game, then amount of open space
+    """
+    prop = len(game.get_blank_spaces()) / total_board_spaces
+    return prop * heuristic1(game, player) + heuristic2(game, player)
+
+
+def heuristic_main_alt_less_more(game, player):
+    """
+    weight number of moves more highly at the beginning of the game, then amount of open space
+    near end game (when improved score gives a winner or loser, prop won't have an effect due to the infinities)
+    """
+    prop = len(game.get_blank_spaces()) / total_board_spaces
+    return prop * improved_score(game, player) + heuristic2(game, player)
+
+
+def heuristic_mainalt_staggered(game, player):
+    """
+    use number of moves at the beginning of the game, then amount of open space
+    and finally, maximum path length (winner will have max length)
+    """
+    game_stage = len(game.get_blank_spaces()) / total_board_spaces
+    if game_stage > 0.7:
+        # early game
+        return heuristic1(game, player)
+    elif game_stage < 0.2:
+        # late game
+        return heuristic6(game, player)
+    else:
+        # middle game
+        return heuristic2(game, player)
+
 
 def custom_score(game, player):
     """Calculate the heuristic value of a game state from the point of view
@@ -125,14 +239,7 @@ def custom_score(game, player):
     float
         The heuristic value of the current game state to the specified player.
     """
-    # if len(game.get_blank_spaces())>=total_board_spaces/2:
-    #     return heuristic1(game, player)
-    # else:
-    #     return heuristic2(game, player)
-    # weight number of moves more highly at the beginning of the game, then amount of open space
-    # and finally, maximum path length (winner will have max length)
-    # each measure for player is compared to opponent's measure
-    return base_heuristic(game, player)
+    return heuristic_main(game, player)
 
 
 total_board_spaces = 0.1
